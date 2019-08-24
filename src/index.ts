@@ -1,2 +1,1 @@
-import { NotificationCenter } from './NotificationCenter'
-export default NotificationCenter
+export * from './NotificationCenter'
