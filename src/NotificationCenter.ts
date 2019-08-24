@@ -43,25 +43,25 @@ let _instance: any
 export class NotificationCenter {
   mObservables: any = {}
 
-  addObserver(notification: string, observer: Function) {
-    let observable = this.mObservables[notification];
+  addObserver(key: string, observer: Function) {
+    let observable = this.mObservables[key];
     if (observable === undefined) {
-      observable = new DummyObservable(notification);
-      this.mObservables[notification] = observable;
+      observable = new DummyObservable(key);
+      this.mObservables[key] = observable;
     }
 
     observable.addObserver(observer);
   }
 
-  removeObserver(notification: string, observer: Function) {
-    let observable = this.mObservables[notification];
+  removeObserver(key: string, observer: Function) {
+    let observable = this.mObservables[key];
     if (observable !== undefined) {
       observable.removeObserver(observer);
     }
   }
 
-  postNotification(notification: string, object: any) {
-    let observable = this.mObservables[notification];
+  postNotification(key: string, object: any = null) {
+    let observable = this.mObservables[key];
     if (observable !== undefined) {
       observable.notifyObservers(object);
     }
